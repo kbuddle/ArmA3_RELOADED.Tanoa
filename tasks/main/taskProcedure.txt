@@ -1,0 +1,15 @@
+
+per task procedure...
+
+01. choose random location (forest/land/bridge/water/fuelstation/path/railway/road/runway/shipwreck/shore/transmitter/watertower)
+02. choose 'roundabouts' location based from chosen random location (max 500m away from original chosen location)
+03. choose random task
+04. choose random task role (to complete the task... secure, destroy, arrest, rescue, steal, sabotage, etc)
+05. choose random object for task role to be applied to (object or AI... arrest AI, destroy vehicle, etc)
+06. choose random base composition (so. many. compositions.)
+07. choose random number of random AI to spawn (each AI will have a different role... medic, engineer, autorifleman, aa specialist, etc)
+08. choose random AI skill level per AI (every AI has a different skill level from... very low, low, regular, medium, high, elite)
+09. choose random AI loadout (weapon/vest/backpack/etc) - not currently implemented
+10. set task-multiplier to 0 (-1 = task failed, +1 = task success, will affect the overall AO progress)
+11. set AI spawn-multiplier to 1 (6 AI spawn each 'loop' with a multiplier of 1, with the multiplier at 0.5 means only 3 AI will spawn for said task)
+12. set AI skill-multiplier to 6 (each AI killed will decrease the multiplier for newly spawned AI units, meaning less skill per unit. 6 skillset levels)

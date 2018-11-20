@@ -1,0 +1,275 @@
+/*
+	----------------------------------------------------------------------------------------------
+File: description.ext
+Author: soulkobk (soulkobk.blogspot.com)
+Last modified: 3:15 PM 29/06/2017
+Description: https://community.bistudio.com/wiki/Description.ext
+	----------------------------------------------------------------------------------------------
+*/
+///////////////////////////////////////////////////////////////////////////////////////////////////
+author = "soulkobk";									// Visible when loading mission
+onLoadName = "RELOADED";								// Visible when loading mission
+onLoadMission = "soulkobk.blogspot.com";
+loadScreen = "media\banners\reloadedLoadingBanner.jpg";										// Visible when loading mission
+overviewPicture = "";									// Visible when selecting mission
+onLoadIntro = "";										// Displays a message while the intro is loading.
+onLoadIntroTime = 0;									// Time and date displayed while the intro loads. 1 visible, 0 hidden.
+onLoadMissionTime = 0;									// Time and date displayed while the mission loads. 1 visible, 0 hidden.
+disabledAI = 1;											// No AI in playable units
+aiKills = 0; 											// disable scorelist for AI players
+enableItemsDropping = 0; 								// disabled with 0
+joinUnassigned = 1;										// 0 = players forced into role on join
+showUAVFeed = 1;										// Enables/Disables the UAV Feed.
+showGroupIndicator = 0;
+showSquadRadar = 1;
+forceRotorLibSimulation = 0;							// Rotor Lib - temporarily disabled (A3 1.66)
+scriptedPlayer = 1;
+skipLobby = 0;
+corpseManagerMode = 0;
+corpseLimit = 25;
+corpseRemovalMinTime = 180;
+corpseRemovalMaxTime = 300;
+wreckManagerMode = 0;
+wreckLimit = 10;
+wreckRemovalMinTime = 180;
+wreckRemovalMaxTime = 300;
+minPlayerDistance = 100;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+allowFunctionsRecompile = 0;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+onPauseScript = "onPause.sqf";
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class Params
+{
+  #include "\a3\Functions_F\Params\paramRevive.hpp"
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+reviveMode = 1;                         // 0: disabled, 1: enabled, 2: controlled by player attributes
+reviveUnconsciousStateMode = 0;         // 0: basic, 1: advanced, 2: realistic
+reviveRequiredTrait = 1;                // 0: none, 1: medic trait is required
+reviveRequiredItems = 1;                // 0: none, 1: medkit, 2: medkit or first aid kit
+reviveRequiredItemsFakConsumed = 0;     // 0: first aid kit is not consumed upon revive, 1: first aid kit is consumed
+reviveDelay = 20;                       // time needed to revive someone (in secs)
+reviveMedicSpeedMultiplier = 2;         // speed multiplier for revive performed by medic
+reviveForceRespawnDelay = 5;            // time needed to perform force respawn (in secs)
+reviveBleedOutDelay = 300;              // unconscious state duration (in secs)
+///////////////////////////////////////////////////////////////////////////////////////////////////
+respawn = 3;											// 0 = none. 1 = bird. 2 = instant where died. 3 = base or respawn_west marker. 4 = respawn with team, or bird. 5 = into AI or bird.
+respawnDelay = 5;										// Delay prior to respawn
+respawnDialog = 0;										// default = 1. show respawn timer and scoreboard when killed.
+respawnTemplates[] = {"BASE"};
+respawnOnStart = 0;
+respawnButton = 1;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#include "thirdParty\CHVD\dialog.hpp"	// CHVD View Distance script
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#include "thirdParty\overrideVA\settings.hpp"
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class Header
+{
+	gameType = COOP;					// Unknown, COOP, DM, TDM, CTF, SC, CTI, RPG, Sandbox, Seize, Defend.
+	minPlayers = 1;						// Min # of players the MISSION supports
+	maxPlayers = 64;					// Max # of players the MISSION supports, not server slots. Make sure # is greater than server slots.
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgFunctions
+{
+	// for mission variables
+	class RELO
+	{
+		#include "functions\client\CfgFunctions.hpp"
+		#include "functions\server\CfgFunctions.hpp"
+		#include "tasks\CfgFunctions.hpp"
+		#include "thirdParty\CfgFunctions.hpp"
+	};
+	// for advancedRappelling
+	class SA
+	{
+		class AdvancedRappelling
+		{
+			file = "thirdParty\advancedRappelling\functions";
+			class advancedRappellingInit {postInit=1;};
+		};
+	};
+	// for view distance
+	#include "thirdParty\CHVD\CfgFunctions.hpp"
+	// for override virtual arsenal
+	#include "thirdParty\overrideVA\functions.hpp"
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgRemoteExec {
+	class Commands {
+		mode = 1;
+		jip = 0;
+		allowedTargets = 0;
+
+		class commandChat {allowedTargets = 1;};
+		class customChat {allowedTargets = 1;};
+		class globalChat {allowedTargets = 1;};
+		class groupChat {allowedTargets = 1;};
+		class hint {allowedTargets = 1;};
+		class hintSilent {allowedTargets = 1;};
+		class lock {allowedTargets = 1;};
+		class lockTurret {allowedTargets = 1;};
+		class setAmmoCargo {};
+		class setDir {allowedTargets = 1;};
+		class setFuel {allowedTargets = 1;};
+		class setGroupOwner {allowedTargets = 2;};
+		class setOwner {allowedTargets = 2;};
+		class setRank {allowedTargets = 1;};
+		class setSpeaker {};
+		class setVehicleAmmo {};
+		class sideChat {allowedTargets = 1;};
+		class switchMove {};
+		class systemChat {allowedTargets = 1;};
+		class vehicleChat {allowedTargets = 1;};
+		class disableUAVConnectability {allowedTargets = 1;};
+
+		class say3D {allowedTargets = 1;};
+
+		// class addCuratorEditableObjects {allowedTargets = 2;};
+		// class removeCuratorEditableObjects {allowedTargets = 2;};
+	};
+	class Functions {
+		mode = 1;
+		jip = 0;
+		allowedTargets = 0;
+
+		class AR_Client_Rappel_From_Heli {};
+		class AR_Enable_Rappelling_Animation {allowedTargets = 2;};
+		class AR_Hint {allowedTargets = 1;};
+		class AR_Hide_Object_Global {allowedTargets = 2;};
+		class AR_Rappel_From_Heli {allowedTargets = 2;};
+
+		class BIS_fnc_callScriptedEventHandler {};
+		class BIS_fnc_curatorRespawn {};
+		class BIS_fnc_deleteTask {jip = 1;};
+		class BIS_fnc_dynamicGroups {};
+		class BIS_fnc_effectKilled {};
+		class BIS_fnc_effectKilledSecondaries {};
+		class BIS_fnc_effectKilledAirDestruction {};
+		class BIS_fnc_effectKilledAirDestructionStage2 {};
+		class BIS_fnc_error {};
+		class BIS_fnc_initIntelObject {jip = 1;};
+		class BIS_fnc_objectVar {};
+		class BIS_fnc_playSound {allowedTargets = 1;};
+		class BIS_fnc_sayMessage {allowedTargets = 1;};
+		class BIS_fnc_setIdentity {};
+		class BIS_fnc_setTask {jip = 1;};
+		class BIS_fnc_setTaskLocal {jip = 1;};
+		class BIS_fnc_sharedObjectives {};
+		class BIS_fnc_showNotification {allowedTargets = 1;};
+
+		class BIS_fnc_reviveInitAddPlayer {};
+		class BIS_fnc_reviveInitRemovePlayer {};
+
+		class RELO_fnc_corpseCleanupHandler {allowedTargets = 2;};
+		class RELO_fnc_randomContainerLoadout {allowedTargets = 2;};
+		class RELO_fnc_addScorePlayer {allowedTargets = 2;};
+
+		class RELO_fnc_fireAndSmoke {allowedTargets = 1;};
+
+		class RELO_fnc_zeusAddPlayer {allowedTargets = 2;};
+		class RELO_fnc_zeusAddObject {allowedTargets = 2;};
+		class RELO_fnc_zeusDeleteObject {allowedTargets = 2;};
+
+		class RELO_fnc_locationSetup {allowedTargets = 2;}; // used for the laptop to create a new AO manually. WILL BE REMOVED ONCE AUTOMATION IS DONE!
+		/* class BIS_fnc_execVM {allowedTargets = 2;}; // used for laptop to create a new AO manually. WILL BE REMOVED ONCE AUTOMATION IS DONE! */
+		class BIS_fnc_debugConsoleExec {}; // REMOVE THIS LATER!
+	};
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgTaskEnhancements {
+	enable = 1;            											// 0: disable new task features (default), 1: enable new task features & add new task markers and task widgets into the map
+	3d = 1;           	 											// 0: do not use new 3D markers (default), 1: replace task waypoints with new 3D markers
+	3dDrawDist = 1000;        										// 3d marker draw distance (default: 2000)
+	share = 1;            											// 0: do not count assigned players (default), 1: count how many players have the task assigned
+	propagate = 1;            										// 0: do not propagate (default), 1: propagate shared tasks to subordinates
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgNotifications
+{
+
+/*
+	class Default
+	{
+		title = ""; // Tile displayed as text on black background. Filled by arguments.
+		iconPicture = ""; // Small icon displayed in left part. Colored by "color", filled by arguments.
+		iconText = ""; // Short text displayed over the icon. Colored by "color", filled by arguments.
+		description = ""; // Brief description displayed as structured text. Colored by "color", filled by arguments.
+		color[] = {1,1,1,1}; // Icon and text color
+		duration = 5; // How many seconds will the notification be displayed
+		priority = 0; // Priority; higher number = more important; tasks in queue are selected by priority
+		difficulty[] = {}; // Required difficulty settings. All listed difficulties has to be enabled
+	};
+*/
+	#include "media\icons\tasksNotifications\CfgNotifications.hpp"
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgTaskTypes
+{
+	/*class Default
+	{
+		title = ""; // Tile displayed as text on black background. Filled by arguments.
+		iconPicture = ""; // Small icon displayed in left part. Colored by "color", filled by arguments.
+		iconText = ""; // Short text displayed over the icon. Colored by "color", filled by arguments.
+		description = ""; // Brief description displayed as structured text. Colored by "color", filled by arguments.
+		color[] = {1,1,1,1}; // Icon and text color
+		duration = 5; // How many seconds will the notification be displayed
+		priority = 0; // Priority; higher number = more important; tasks in queue are selected by priority
+		difficulty[] = {}; // Required difficulty settings. All listed difficulties has to be enabled
+	};
+*/
+	#include "media\icons\tasksNotifications\CfgTaskTypes.hpp"
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgNetworkMessages
+{
+
+	class AdvancedRappellingRemoteExecClient
+	{
+		module = "AdvancedRappelling";
+		parameters[] = {"ARRAY","STRING","OBJECT","BOOL"};
+	};
+
+	class AdvancedRappellingRemoteExecServer
+	{
+		module = "AdvancedRappelling";
+		parameters[] = {"ARRAY","STRING","BOOL"};
+	};
+
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgSounds
+{
+	class AR_Rappel_Loop
+	{
+		name = "AR_Rappel_Loop";
+		sound[] = {"thirdParty\advancedRappelling\sounds\AR_Rappel_Loop.ogg", db+20, 1};
+		titles[] = {0,""};
+	};
+	class AR_Rappel_Start
+	{
+		name = "AR_Rappel_Start";
+		sound[] = {"thirdParty\advancedRappelling\sounds\AR_Rappel_Start.ogg", db+20, 1};
+		titles[] = {0,""};
+	};
+	class AR_Rappel_End
+	{
+		name = "AR_Rappel_End";
+		sound[] = {"thirdParty\advancedRappelling\sounds\AR_Rappel_End.ogg", db+20, 1};
+		titles[] = {0,""};
+	};
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class CfgUnitInsignia
+{
+	class RELOADED
+	{
+		displayName = "RELOADED NATO DIVISION"; // Name displayed in Arsenal
+		author = "RELOADED"; // Author displayed in Arsenal
+		texture = "media\textures\insignia\reloadedInsignia.paa"; // Image path
+		textureVehicle = ""; // Does nothing currently, reserved for future use
+	};
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////

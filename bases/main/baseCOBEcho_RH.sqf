@@ -1,0 +1,85 @@
+/*
+	fn_objectsGrabber by soulkobk.
+	mission: baseCOB_Echo_RH
+	world: VR
+	center position: [0,0,0]
+	radius: 100
+
+	array list: [objectClass, objectPosition, objectDirection, objectSimulation, objectSimpleObject, objectPitchBank, objectDamage, objectAllowDamage, objectVarName, objectInit]
+
+	to set object as task object, place in init of object = this setVariable ['taskObject',true];
+	to damage/disable/lock vehicle (true to lock), place in init of object = [this,true] call RELO_fnc_vehicleDisable;
+*/
+
+[
+	["Land_Cargo_House_V4_F",[-10.5764,-2.47212,0],0,true,false,[0,0],0,true,"",""],
+	["Land_Cargo_House_V4_F",[8.71837,2.05794,0],180,true,false,[0,0],0,true,"",""],
+	["Land_Cargo_Patrol_V1_F",[-6.94039,-13.3475,4.76837e-007],0.104889,true,false,[0,0],0,true,"",""],
+	["Land_Cargo_Patrol_V1_F",[8.02311,12.8327,4.76837e-007],178.764,true,false,[0,-0],0,true,"",""],
+	["Land_BagBunker_01_large_green_F",[-5.14242,17.5135,0],180,true,false,[0,0],0,true,"",""],
+	["Land_BagBunker_01_large_green_F",[6.54318,-18.0025,0],0,true,false,[0,0],0,true,"",""],
+	["Land_BagFence_01_long_green_F",[-0.678109,-10.1602,0],135.464,false,false,[0,-0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[-1.46588,1.07,0],136.352,false,false,[0,-0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[-18.258,5.76257,0],89.3486,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[-7.65448,-4.82683,0],89.3486,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[-7.9894,9.59661,0],89.3486,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[14.0513,-10.6848,0],89.3486,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[17.6986,-5.83684,0],89.3486,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[2.14333,9.8436,0],304.789,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[5.71436,4.37282,0],89.3486,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_long_green_F",[6.5671,-5.85049,0],89.3486,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[-0.665948,-10.1239,0.791383],132.639,false,false,[0,-0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[-1.45316,1.10613,0.791383],133.527,false,false,[0,-0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[-18.2758,5.79651,0.791383],86.5238,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[-7.67223,-4.79288,0.791383],86.5238,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[-8.00715,9.63056,0.791383],86.5238,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[14.0335,-10.6509,0.791383],86.5238,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[17.6809,-5.80289,0.791383],86.5238,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[2.13811,9.80565,0.791383],301.964,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[5.69661,4.40676,0.791383],86.5238,false,false,[0,0],0,false,"",""],
+	["Land_BagFence_01_short_green_F",[6.54935,-5.81655,0.791383],86.5238,false,false,[0,0],0,false,"",""],
+	["Land_BarrelEmpty_grey_F",[-6.21871,0.173447,0],0.825988,false,true,[0,0],0,false,"",""],
+	["Land_BarrelTrash_grey_F",[-5.48824,0.00352526,0],6.93401,false,true,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[-12.6017,-13.9582,0],270.259,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[-13.9341,14.0665,0],178.219,false,false,[0,-0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[-14.1887,-6.2343,0],247.132,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[-14.6452,3.19085,0],178.755,false,false,[0,-0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[-16.6192,-0.327857,0],246.054,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[-21.6919,10.8943,0],136.628,false,false,[0,-0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[-23.4073,4.66265,0],251.693,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[13.7863,13.7222,0],90,false,false,[0,-0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[15.3093,-14.5378,0],358.495,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[15.4082,6.00557,0],66.873,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[15.9074,-3.41741,0],358.495,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[17.8655,0.11019,0],65.7942,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[23.0823,-11.403,0],316.905,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_big_4_green_F",[24.8278,-5.17973,0],71.9699,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[-1.26398,10.6343,0],268.656,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[-1.3646,-14.1138,0],90.7108,false,false,[0,-0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[-3.47287,-17.6609,0],0,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[-7.39372,3.29036,0],0,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[-9.06765,-17.6459,0],0,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[0.546459,5.20339,0],51.1074,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[0.893541,-5.65827,0],233.437,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[2.31584,13.9455,0],89.4051,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[2.48172,-11.1583,0],90.9854,false,false,[0,-0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[4.31844,17.4168,0],0,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[9.10231,-3.64432,0],0,false,false,[0,0],0,false,"",""],
+	["Land_HBarrier_01_line_5_green_F",[9.86736,17.3649,0],0,false,false,[0,0],0,false,"",""],
+	["Land_LampStreet_small_F",[-14.6091,4.23038,0],0,true,false,[0,0],0,true,"",""],
+	["Land_LampStreet_small_F",[-2.24964,-11.3052,0],0,true,false,[0,0],0,true,"",""],
+	["Land_LampStreet_small_F",[14.6241,-4.85426,0],0,true,false,[0,0],0,true,"",""],
+	["Land_LampStreet_small_F",[3.44946,11.2009,0],0,true,false,[0,0],0,true,"",""],
+	["Land_MetalBarrel_F",[-5.05465,0.607041,0],297.438,false,true,[0,0],0,false,"",""],
+	["Land_WaterBarrel_F",[-5.197,1.685,0],189.652,false,true,[0,0],0,false,"",""],
+	["Land_PortableLight_double_F",[-4.91779,21.1718,2.07088],184.773,true,false,[0,0],0,true,"",""],
+	["Land_PortableLight_double_F",[-6.63424,-16.3334,0],0.823011,true,false,[0,0],0,true,"",""],
+	["Land_PortableLight_double_F",[7.51725,15.6505,0],178.683,true,false,[0,-0],0,true,"",""],
+	["O_supplyCrate_F",[-11.0957,11.7324,0],92.1939,true,false,[0,-0],0,true,"",""],
+	["O_supplyCrate_F",[-12.4094,11.8162,0],92.1939,true,false,[0,-0],0,true,"",""],
+	["O_supplyCrate_F",[-13.7678,11.9068,0],92.1939,true,false,[0,-0],0,true,"",""],
+	["OfficeTable_01_old_F",[-12.536,0.67822,0.728848],276.438,false,true,[0,0],0,false,"",""],
+	["OfficeTable_01_old_F",[11.0653,1.30394,0.592812],85.6738,false,true,[0,0],0,false,"",""],
+	["Land_File_research_F",[11.0354,1.42225,1.43762],62.4611,true,false,[0,0],0,true,"",""],
+	["Land_Laptop_02_unfolded_F",[-12.45,0.634027,1.57366],297.837,true,false,[0,0],0,true,"",""]
+]

@@ -1,0 +1,212 @@
+09/05/2018
++ refactor code, changed a lot of code, variables, functions, strings, etc. stage one completed (took ~20hrs in total).
++ updated fn_deployParaTroop, added in velocity for deployed units and a 1 second delay on opening parachute (immersion aesthetics).
++ updated initServer, changed routine for loading whitelisted players for EDEN testing purposes.
++ updated initServer, added two new VON channels, one for zeus controllers and one for spectators (admins/vip).
++ changed urbanPatrol, changed to a function to be spawned instead of using execVM.
++ added in TANKS DLC vehicles for both NATO and CSAT.
++ changed server side reloadedsettings folder and file structure.
+
+03/05/2018
++ updated admin spectate init, changed routine due to init errors.
++ changed admin zeus init, changed to a scripted zeus system based upon server side UID to allow access. makes it easy to add/remove zeus access without having to update the mission file.
++ updated object mapper, updated the way the base objects are spawned for tasks, which should hopefully prohibit task objects from exploding.
++ updated the way the ao is triggered (precompiled, should be faster).
++ updated random container loadout script. containers will no longer over-fill with contents.
++ updated player setup, added in sway coefficient to force 0.5 sway.
++ updated zeus modules for whitelist so global notifications are mute. added thermal vision modes to zeus views.
+
+16/12/2017
++ tweaked unit markers script/function, adjusted 3d markers for transparency (fades out the closer to death a player is), as well as adding a larger indicator for medics to take notice of incapacitated units.
+
+14/12/2017
++ changed blufor air defense area. blufor base air defense area is now up to 1500m from the center of the blufor base (see outer blue map marker), the ai 'praetorian 1c' will not engage unless 'air' enemy are inside this area (manually scripted).
++ added more lighting from blufor main base area towards/along the road to the diver spawn area.
++ removed 3d sound for 'no fire zones' (no more audible click, just a notification on screen).
++ updated bluFor base setup, added in 'no fire zone' for ALL autonomous vehicle turrets.
++ added UAV service script/function for both client and server. UAV's are now able to be serviced at the same service position as planes (can be seperated to it's own service point if needed).
++ updated unit markers script/function, added in revive pulse icon for units in incapacitated state (it will show for all players, not just medics).
++ added revive system custom script/function for enabling 3D markers for incapacitated units when difficulty option 'groupIndicators' is set to 0 (custom group indicators used with unit markers script/function).
+
+09/12/2017
++ updated unit markers script/function, refactored code for better conditional checks.
+
+08/12/2017
++ updated unit markers script/function to use color coding and added faction and group 3d markers.
++ fixed enum error with third party script 'stickyCharges' (v1.78 update issue).
++ added RELOADED ground banner and signs at NATO base.
++ changed all NATO base arsenal crates to crate with no inventory access.
+
+27/11/2017
++ updated container loadout script/function to make sure object has inventory/container access (accidently used it on non container object, which threw an error, hence now double error checked and fixed).
++ updated deployment scripts/functions to delete vehicles if they are abandoned (eg, helicopter gets damaged and is forced to land, troop deploy/abandon helicopter).
++ fixed vehicle alarm for abandoned vehicles (alarm gives warning that vehicle is about to explode), alarm sound was local only, have now made it global to all connected players.
++ changed AO to task ratios again, rolled back the amount of heavy tasks by one and light tasks by one on a per AO basis (less simulated objects, hopefully better fps).
++ added building occupy script/function for deploying (temporary/non-respawnable) AI to within the enemy AO. every AO will have AI occupying random buildings.
++ updated all road base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
++ updated all railway base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
++ updated all land base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
++ updated all forest base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
+
+27/11/2017
++ added simple task base composition "ST_PowerGrid_CM" (cannibalmerk).
+
+23/11/2017
++ changed object grabber script for exporting base compositions, it now alphabetically sorts by object class name.
++ updated all simple base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
++ added RELOADED insignia (not yet in use).
+
+21/11/2017
++ changed NATO base flag texture to a custom mission version.
++ fixed all deploy scripts/functions to initiate cleanup handlers for all non-deployed pilots/crew should they also die whilst deploying troop.
++ changed AI patrol script to force enemy planes to stay at ~300m above terrain level (plane would ignore commands and keep gaining altitude whilst circling).
+
+19/11/2017
++ changed server config entries to 'try' and fix the vanilla revive system (no idea if it will.. elp!).
++ added new RELOADED loading screen banner.
++ fixed error within COB script for proper AI deployment count (grounded and deployed).
++ changed DEBUG SPAM, debug spam (text and markers) are turned OFF. DEBUG STATS are still ON.
++ changed AI chosen skill-set levels, removed 'HIGH' skill-set for the time being (adjusting balance, needs feedback!)
++ changed AO to task ratios, rolled back the amount of heavy tasks and light tasks on a per AO basis (less simulated objects, hopefully better fps).
++ changed AO sizings, reduced all overall AO sizings by roughly 200m.
++ changed COB marker placement sizing from 300m to 250m
++ changed all deploy scripts/functions to correct a script error should an AI die whilst being deployed.
++ changed AO deploy patrol from 24 back to 48 (AO will spawn 48 deployed units initially for general AO patrolling).
++ updated all bridge base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
+
+08/11/2017
++ corrected all task scripts, secure role was incorrectly initiating steal role (now corrected).
+
+08/11/2017
++ added land task base composition "CrampedBase_CM" (cannibalmerk).
++ added forest task base composition "CrampedBase_CM" (cannibalmerk).
++ added land task base composition "HQDatalinkHack_CM" (cannibalmerk).
++ added forest task base composition "HQDatalinkHack_CM" (cannibalmerk).
+
+05/11/2017
++ updated objects mapper script for use with extra conditional terrain checks.
++ updated terrain scan scripts/code (find position) for extra conditional checking so simple tasks don't place close to (or on top of) existing tasks.
+
+05/11/2017
++ added simple task base composition "ST_TankTruck_CM" (cannibalmerk).
++ added simple task base composition "ST_WellPoison_CM" (cannibalmerk).
+
+03/11/2017
++ added vehicle disable function for use with tasks.
++ updated all path base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
++ updated all COB base compositions by re-exporting them using the new script after applying propper settings within the EDEN editor.
++ changed object grabber script for exporting base compositions, it now exports properly for initial damage, no simulation, simple object, init line, etc.
++ added 'steal' task role for task completions (steal object and take it at least 1000m away from the task, must not be destroyed).
++ added 'secure' task role for task completions (secure object, scrollwheel option).
++ added 'repair' task role for task completions (repair object, engineer needs to repair object, most likely a vehicle).
++ removed 'very low' skill level and introduced 'high' skill level to all AI.
++ changed redeployed soldier counts upon task successful/failed. percentage chance to send reinforcements back to task (redeployed task reinforcements won't respawn) and AO redeployment for reinforcements (percentage chance, random number of redeployed AI units) COB reinforcements after task completion have been removed (AI will attack where they are needed within the AO).
++ reduced COB deploy patrol from 24 to 12 (COB spawns 12 on-ground units, and will spawn 12 deployed units initially).
++ reduced AO deploy patrol from 48 to 24 (AO will spawn 24 deployed units initially).
+
+03/11/2017
++ added forest task base composition "AA_Centor_Forest_SM" (SabuMaru).
++ added land task base composition "AA_Centor_Green_SM" (SabuMaru).
++ added land task base composition "AA_Centor_Land_SM" (SabuMaru).
++ added runway task base composition "AA_Centor_Runway_Gr_SM" (SabuMaru).
++ added shore task base composition "AA_Centor_Shore_SM" (SabuMaru).
++ added water task base composition "AA_Centor_Water_SM" (SabuMaru).
++ added forest task base composition "AA_Inf_Forest_SM" (SabuMaru).
++ added land task base composition "AA_Inf_Green_SM" (SabuMaru).
++ added land task base composition "AA_Inf_Land_SM" (SabuMaru).
++ added runway task base composition "AA_Inf_Runway_Gr_SM" (SabuMaru).
++ added runway task base composition "AA_Inf_Runway_SM" (SabuMaru).
++ added shore task base composition "AA_Inf_Shore_SM" (SabuMaru).
++ added water task base composition "AA_Inf_Water_SM" (SabuMaru).
+
+03/11/2017
++ added simple task base composition "ST_Secure_DataIntel_RH" (Romeo_Hotel).
++ added simple task base composition "ST_Secure_WaterTower_RH" (Romeo_Hotel).
++ added simple task base composition "ST_Runway_SecureHeliorSupplies_RH" (Romeo_Hotel).
++ added simple task base composition "ST_Repair_IDAPAmbulance_RH" (Romeo_Hotel).
++ added simple task base composition "ST_Repair_HEMETTMedical_RH" (Romeo_Hotel).
++ added simple task base composition "ST_Repair_GhostHawk_RH" (Romeo_Hotel).
+
+03/11/2017
++ added simple task base composition "ST_RepairIDAPHeli_CM" (cannibalmerk).
++ added simple task base composition "ST_IntelLaptop_CM" (cannibalmerk).
++ added simple task base composition "ST_RustyTankShed_CM" (cannibalmerk).
++ added simple task base composition "Radio1_CM" (cannibalmerk).
++ added simple task base composition "Radio2_CM" (cannibalmerk).
++ added simple task base composition "Radio3_CM" (cannibalmerk).
++ added simple task base composition "OrcaDown1_CM" (cannibalmerk).
++ added bridge task base composition "BridgeIntelSecure_CM" (cannibalmerk).
++ added path task base composition "TrailCampsite_CM" (cannibalmerk).
++ added runway task base composition "RunwayNephron_CM" (cannibalmerk).
++ added runway task base composition "RunwayTaru_CM" (cannibalmerk).
++ added runway task base composition "RunwayKajman_CM" (cannibalmerk).
++ added runway task base composition "RunwayShikra_CM" (cannibalmerk).
++ added runway task base composition "RunwayWipeout_CM" (cannibalmerk).
++ added runway task base composition "RunwayBase1_CM" (cannibalmerk).
+
+19/10/2017
++ changed tasks, updated all tasks to new script system, split task configurations to its own file for easy administration.
++ added simple tasks, simple tasks are easier to secure and will have limited troop patrol (or most likely none at all) and will not contribute towards overall AO or COB patrol once task is completed/failed.
++ added 'destroy' task role for task completions.
++ changed center of bluFor base area, deleted obstructive light poles near huron heli pad, added more lighting to properly light the base area at night.
++ changed flag at bluFor base to nato texture.
++ changed vanilla revive system back to configuration set up (from mission config).
++ changed engineer patrol code to disallow automatic repairing of disabled task vehicles.
++ added vehicle disable function for vehicles used in tasks (damages/disables vehicle and switchable variable to disallow driving/mounting by players and AI).
++ added static weapon occcupy function for AI at tasks (if static weapons are found, there is a 50% chance an AI will occupy each one).
++ added 'PRAETORIAN 1C' turret at bluFor base for automatic base air protection (exists 100% of the time, unlimited ammo, no damage, not usable by players).
++ added 'fire and smoke' function (client side) for use with tasks (percentage chance task spawns smoke and/or fire after a destruction role is completed, makes distant AI take notice of area).
++ changed all task scripts/code to properly handle vehicle despawning (abandoned/destroyed) within base compositions.
++ changed all find<X>Position script code 'terrain scan area' from 12.5m to 16.5m, and 'grid steps' from 25m to 33m respectively (to better suit default size base compositions at 33m x 33m).
++ changed deploy paratroop code to instantly deploy parachute upon AI jumping from helicopter (so on low simulation cycles, they don't go splat!).
++ changed enemy jet to spawn on AO's again. Removed jet radar so it doesn't (I hope) shoot down bluFor helicopters trying to take off, as those CAS jets can be OP.
+
++ added COB task base composition "baseCOB_Juliett_RH" (Romeo_Hotel).
++ added road task base composition "roadBlockWreckRoad_CM" (cannibalmerk).
++ added road task base compositoin "smallCheckPointRoad_CM" (cannibalmerk).
++ added forest task base composition "supplyCacheForest_CM" (cannibalmerk).
++ added forest task base composition "baseSimpleFuelDestroy" (soulkobk).
++ added forest task base composition "trenchBunkerOne" (soulkobk).
++ added simple task base composition "radioTowerLand_CM" (cannibalmerk).
++ added simple task base composition "baseSimpleHeliDown" (soulkobk).
+
+25/09/2017
++ changed huron livery (skin), fixed ramp camo pattern and engine output darken. added an armed huron livery variant.
++ changed helicopter service area, fixed floating objects.
++ changed both unarmed huron helicopters in spawn area to armed variants.
++ changed engineer patrol script to make sure vehicles stay still whilst being repaired.
++ changed default/placeholder task completion script. potato sack now deletes/despawns once task is successful/failed/ao-changed.
++ changed ao clean up script, added in a clean up (delete) for all left-over mines/explosives as well as all dropped/abandoned weapons/items.
+
+24/09/2017
++ changed blackhawk livery (skin), tyre darken and wheel change.
++ changed huron livery (skin), tyre darken and wheel change.
++ deleted debug location marker(s) (were in use for water base testing).
++ changed vehicle pad livery (skin) (no parking yellow hatch to camo blackSheep logo to match the new heli pad liveries).
++ added all AI (and AI vehicles) are now ZEUS controllable should any on-the-fly issues occur (admin only access).
++ added abandon AI vehicle check for self-driven redeployed troop and patrol vehicles. After 300 seconds of being abandoned, AI vehicles will emit an alarm for 10 seconds then explode and delete (self clean).
++ changed newly created debug script to output more information (functions/scripts + units/vehicles).
++ changed revive config from description.ext to within mission.sqm to see if it 'fixes' issues.
+
+22/09/2017
++ added custom blackSheep green camo helicopter liveries (skins) via vehicle respawn handler.
++ changed the (re)spawnable helicopter heli-pads to a camo blackSheep logo.
++ fixed paradrop deploy script, helicopters no longer glitch/hover after deployment of troop (paradrop script had a line of unneeded/glitchy code).
++ changed AI ground patrols (on foot/land vehicle) 'share information' distance from 200 meters to 100 meters (has roll-on effect per unit).
++ added debug script to show number functions/scripts running on the server.
++ fixed AI engineer script to properly look for and fix all damaged land vehicles (engineer patrol).
+
+14/09/2017
++ changed 'armed helicopter respawn handler' duration from a static 120 seconds to a randomly chosen 300/450/600 seconds.
++ changed 'armed plane respawn handler' duration from a static 480 seconds to a randomly chosen 480/540/600/660/720 seconds.
++ changed 'armed tank respawn handler' duration from a static 320 seconds to a randomly chosen 480/540/600/660/720 seconds.
++ changed 'armed boat respawn handler' duration from a static 120 seconds to a randomly chosen 300/450/600 seconds.
++ changed 'armed vehicle respawn handler' duration from a static 240 seconds to a randomly chosen 300/450/600 seconds.
++ added 'base cleaner' for player dropped items, each item container will self clean (delete) after 120 seconds.
++ fixed 'potato sack' positioning above/on water bases, now able to secure! (placeholder task modifier).
++ fixed dynamic AI positioning on water bases, and kept them still so they don't walk in to the water. they are able to move once in combat.
++ fixed troop deploy helicopters no longer insta-delete upon being shot down. they now crash and burn and eject dead bodies.
+
+NOT ADDED...
++ added in 'random start time' upon server (re)start. date will be forced to 2035/06/01 (for decent thermal vision usage). 5 hours day and 1 hour night per 6 hour gaming session.
++ added AI troop code checks to only allow AI respawning when the current AI count is less than the maximum total allowed for the current AO.
